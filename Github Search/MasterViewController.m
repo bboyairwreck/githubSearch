@@ -9,9 +9,13 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 
+static NSString *RepoCellIdentifier = @"RepoCells";
+
 @interface MasterViewController ()
 
-@property NSMutableArray *objects;
+@property NSMutableArray *objects;  // TODO: delete this
+@property NSMutableArray *repositoryItems;
+
 @end
 
 @implementation MasterViewController
@@ -27,21 +31,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    self.title = @"Results";
+    
+//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+//
+//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+//    self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     // send client parameters to fetch from API
     SearchHTTPClient *client = [SearchHTTPClient sharedSearchHTTPClient];
     client.delegate = self;
-    [client searchReposWithName:@"tetris" withLanguage:@"assembly"];
+    [client searchReposWithName:@"tetris" withLanguage:@"assembly"];    // TODO: allow searching
 }
 
+// Successfully Received results from Github Search API
 -(void)searchHTTPClient:(SearchHTTPClient *)client gotResults:(id)results
 {
-    NSLog(@"%@", results);
+    NSLog(@"Successfully received callback");
+    
+    // TODO: DELETE THIS - shows response back
+    // NSLog(@"%@", results);
+    
+    if ([results isKindOfClass:[NSDictionary class]]) {
+        
+        // TODO: DELETE THIS - shows items
+        NSLog(@"Result items = %@", results[@"items"]);
+        
+        NSLog(@"Number of items = %lu", [results[@"items"] count]);
+        
+        self.repositoryItems = results[@"items"];
+        
+        // insert cells
+        [self.tableView reloadData];
+        
+    }
 }
 
 -(void)searchHTTPClient:(SearchHTTPClient *)client failedResults:(NSError *)error
@@ -83,20 +107,26 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objects.count;
+    return [self.repositoryItems count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    NSDate *object = self.objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    
+    NSString *name = self.repositoryItems[indexPath.row][@"name"];
+    
+    NSLog(@"name = %@", name);
+    
+    cell.textLabel.text = name;
+    
+//    NSDate *object = self.objects[indexPath.row];
+//    cell.textLabel.text = [object description];
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
