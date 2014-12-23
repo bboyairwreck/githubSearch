@@ -32,6 +32,21 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    // send client parameters to fetch from API
+    SearchHTTPClient *client = [SearchHTTPClient sharedSearchHTTPClient];
+    client.delegate = self;
+    [client searchReposWithName:@"tetris" withLanguage:@"assembly"];
+}
+
+-(void)searchHTTPClient:(SearchHTTPClient *)client gotResults:(id)results
+{
+    NSLog(@"%@", results);
+}
+
+-(void)searchHTTPClient:(SearchHTTPClient *)client failedResults:(NSError *)error
+{
+        NSLog(@"%@", error);
 }
 
 - (void)didReceiveMemoryWarning {

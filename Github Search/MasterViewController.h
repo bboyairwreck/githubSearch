@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchHTTPClient.h"
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController <SearchHTTPClientDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
-
 
 @end
 
