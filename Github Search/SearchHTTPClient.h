@@ -20,7 +20,6 @@
 - (void)searchReposWithName:(NSString *)repoName;
 - (void)searchReposWithName:(NSString *)repoName withLanguage:(NSString *)language;
 
-
 @end
 
 // Delegate to handle successful and failed responses on Github Search

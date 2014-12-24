@@ -10,16 +10,15 @@
 
 @implementation RepoTableViewCell
 
+// Put Label for name of Repo
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
-        CGPoint center = self.contentView.center;
         
         self.repoLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 0, 200.0f, self.contentView.bounds.size.height)];
-        [self.repoLabel setTextColor:[UIColor greenColor]];
-        self.repoLabel.backgroundColor = [UIColor lightGrayColor];
+        [self.repoLabel setTextColor:[UIColor blueColor]];
         
         [self.contentView addSubview:self.repoLabel];
     }

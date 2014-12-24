@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "SearchHTTPClient.h"
 
-@class DetailViewController;
+@class RepoDetailViewController;
 
-@interface MasterViewController : UITableViewController <SearchHTTPClientDelegate, UITableViewDelegate>
+@interface MasterViewController : UITableViewController <SearchHTTPClientDelegate, UITableViewDelegate, UISearchBarDelegate, UIAlertViewDelegate>
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) RepoDetailViewController *detailViewController;
 
 @end
 

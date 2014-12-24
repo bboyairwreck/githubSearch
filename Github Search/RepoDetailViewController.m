@@ -6,39 +6,15 @@
 //  Copyright (c) 2014 Eric Chee. All rights reserved.
 //
 
-#import "DetailViewController.h"
-#import "RepoDetailsView.h"
+#import "RepoDetailViewController.h"
+#import "RepoDetailView.h"
 
 
-@interface DetailViewController ()
-@property (nonatomic, strong) RepoDetailsView *view;
+@interface RepoDetailViewController ()
+@property (nonatomic, strong) RepoDetailView *view;
 @end
 
-@implementation DetailViewController
-
-#pragma mark - Managing the detail item
-
-// If set Repo details, update view
-- (void)setRepoDetails:(NSDictionary *)repoDetails {
-    if (_repoDetails != repoDetails) {
-        _repoDetails = repoDetails;
-        
-        [self configureRepoDetailView];
-    }
-}
-
-- (void)configureRepoDetailView
-{
-    if (self.repoDetails) {
-        self.title = self.repoDetails[@"name"];
-        
-        self.view = [[RepoDetailsView alloc] initWithFrame:self.view.bounds];
-        
-        [self fetchImage];
-        [self insertDetails];
-    }
-}
-
+@implementation RepoDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,6 +26,31 @@
     [self configureRepoDetailView];
     
 }
+
+#pragma mark - Managing the repo details
+
+// If set Repository details, update view
+- (void)setRepoDetails:(NSDictionary *)repoDetails {
+    if (_repoDetails != repoDetails) {
+        _repoDetails = repoDetails;
+        
+        [self configureRepoDetailView];
+    }
+}
+
+// Update view with title, image, and insert detail labels
+- (void)configureRepoDetailView
+{
+    if (self.repoDetails) {
+        self.title = self.repoDetails[@"name"];
+        
+        self.view = [[RepoDetailView alloc] initWithFrame:self.view.bounds];
+        
+        [self fetchImage];
+        [self insertDetails];
+    }
+}
+
 
 - (void)fetchImage {
     NSString *imageOfOwnerURL = self.repoDetails[@"owner"][@"avatar_url"];
@@ -74,14 +75,19 @@
     }
 }
 
+// Takes data from repo details and inserts them into labels in the details view
+- (void)insertDetails
+{
+    // [NSString stringWithFormat:@" - %@", self.repoDetails[@""][@""]];
+    self.view.ownerLabel.text = [NSString stringWithFormat:@"Owner - %@", self.repoDetails[@"owner"][@"login"]];
+    self.view.repoURL.text = [NSString stringWithFormat:@"Repository URL - %@", self.repoDetails[@"html_url"]];
+    self.view.numOfStars.text = [NSString stringWithFormat:@"Number of Stars - %@", self.repoDetails[@"stargazers_count"]];
+    self.view.canForkLabel.text = [NSString stringWithFormat:@"Forks - %@", self.repoDetails[@"forks_count"]];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)insertDetails
-{
-    self.view.ownerLabel.text = [NSString stringWithFormat:@"Owner - %@", self.repoDetails[@"owner"][@"login"]];
 }
 
 @end

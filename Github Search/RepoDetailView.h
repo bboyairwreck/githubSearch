@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RepoDetailsView : UIScrollView
+@interface RepoDetailView : UIScrollView
 
 @property (nonatomic, strong) UIImageView *ownerImageView;
 @property (nonatomic, strong) UILabel *ownerLabel;
-@property (nonatomic, strong) UILabel *htmlURL;
-@property (nonatomic, strong) NSNumber *numOfStars;
+@property (nonatomic, strong) UILabel *repoURL;
+@property (nonatomic, strong) UILabel *numOfStars;
 @property (nonatomic, strong) UILabel *canForkLabel;
 
 - (void)initOwnerImageViewWithImage:(UIImage *)ownerImage;

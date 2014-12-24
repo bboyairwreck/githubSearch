@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AFNetworking.h>
 
-@interface DetailViewController : UIViewController
+@interface RepoDetailViewController : UIViewController
 
 @property (nonatomic, strong) NSDictionary *repoDetails;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
