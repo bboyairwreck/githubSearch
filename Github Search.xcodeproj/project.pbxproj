@@ -16,6 +16,8 @@
 		07D086601A49A0D8008201A2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07D0865E1A49A0D8008201A2 /* LaunchScreen.xib */; };
 		07D0866C1A49A0D9008201A2 /* Github_SearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D0866B1A49A0D9008201A2 /* Github_SearchTests.m */; };
 		07D086771A49A61E008201A2 /* SearchHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D086761A49A61E008201A2 /* SearchHTTPClient.m */; };
+		07D0867A1A4A13EE008201A2 /* RepoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D086791A4A13EE008201A2 /* RepoTableViewCell.m */; };
+		07D0867D1A4A2D73008201A2 /* RepoDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D0867C1A4A2D73008201A2 /* RepoDetailsView.m */; };
 		F8B29E7C6E42AE91CEE89FAB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB882394FA1444049741D534 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,10 @@
 		07D0866B1A49A0D9008201A2 /* Github_SearchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Github_SearchTests.m; sourceTree = "<group>"; };
 		07D086751A49A61E008201A2 /* SearchHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHTTPClient.h; sourceTree = "<group>"; };
 		07D086761A49A61E008201A2 /* SearchHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHTTPClient.m; sourceTree = "<group>"; };
+		07D086781A4A13EE008201A2 /* RepoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoTableViewCell.h; sourceTree = "<group>"; };
+		07D086791A4A13EE008201A2 /* RepoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoTableViewCell.m; sourceTree = "<group>"; };
+		07D0867B1A4A2D73008201A2 /* RepoDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoDetailsView.h; sourceTree = "<group>"; };
+		07D0867C1A4A2D73008201A2 /* RepoDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoDetailsView.m; sourceTree = "<group>"; };
 		2A26E0BF72F4A03A6E5F87AA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		64E8E1E8B678818E7997C70F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DB882394FA1444049741D534 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +110,10 @@
 				07D086761A49A61E008201A2 /* SearchHTTPClient.m */,
 				07D086591A49A0D8008201A2 /* Main.storyboard */,
 				07D0865C1A49A0D8008201A2 /* Images.xcassets */,
+				07D086781A4A13EE008201A2 /* RepoTableViewCell.h */,
+				07D086791A4A13EE008201A2 /* RepoTableViewCell.m */,
+				07D0867B1A4A2D73008201A2 /* RepoDetailsView.h */,
+				07D0867C1A4A2D73008201A2 /* RepoDetailsView.m */,
 				07D0865E1A49A0D8008201A2 /* LaunchScreen.xib */,
 				07D0864C1A49A0D8008201A2 /* Supporting Files */,
 			);
@@ -289,6 +299,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D086771A49A61E008201A2 /* SearchHTTPClient.m in Sources */,
+				07D0867A1A4A13EE008201A2 /* RepoTableViewCell.m in Sources */,
+				07D0867D1A4A2D73008201A2 /* RepoDetailsView.m in Sources */,
 				07D086521A49A0D8008201A2 /* AppDelegate.m in Sources */,
 				07D086551A49A0D8008201A2 /* MasterViewController.m in Sources */,
 				07D0864F1A49A0D8008201A2 /* main.m in Sources */,

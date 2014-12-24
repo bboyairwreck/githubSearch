@@ -11,7 +11,7 @@
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController <SearchHTTPClientDelegate>
+@interface MasterViewController : UITableViewController <SearchHTTPClientDelegate, UITableViewDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 

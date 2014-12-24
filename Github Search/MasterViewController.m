@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "RepoTableViewCell.h"
 
 static NSString *RepoCellIdentifier = @"RepoCells";
 
@@ -32,6 +33,8 @@ static NSString *RepoCellIdentifier = @"RepoCells";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"Results";
+    
+    [self.tableView registerClass:[RepoTableViewCell class] forCellReuseIdentifier:RepoCellIdentifier];
     
 //    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 //
@@ -92,9 +95,13 @@ static NSString *RepoCellIdentifier = @"RepoCells";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.objects[indexPath.row];
+        
+        NSDictionary *repoData = self.repositoryItems[indexPath.row];
+        
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-        [controller setDetailItem:object];
+
+        [controller setRepoDetails:repoData];
+        
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
@@ -111,13 +118,11 @@ static NSString *RepoCellIdentifier = @"RepoCells";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    RepoTableViewCell *cell = (RepoTableViewCell *)[tableView dequeueReusableCellWithIdentifier:RepoCellIdentifier forIndexPath:indexPath];
     
     NSString *name = self.repositoryItems[indexPath.row][@"name"];
     
-    NSLog(@"name = %@", name);
-    
-    cell.textLabel.text = name;
+    cell.repoLabel.text = name;
     
 //    NSDate *object = self.objects[indexPath.row];
 //    cell.textLabel.text = [object description];
@@ -136,6 +141,18 @@ static NSString *RepoCellIdentifier = @"RepoCells";
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
+}
+
+// When a Cell is Tapped/Highlighted
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"tapped at %@", indexPath);
+    
+    [self performSegueWithIdentifier:@"showDetail" sender:nil];
+    
+    NSDictionary *repoData = self.repositoryItems[indexPath.row];
+    [self.detailViewController setRepoDetails:repoData];
+
 }
 
 @end

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking.h>
 
 @interface DetailViewController : UIViewController
 
-@property (strong, nonatomic) id detailItem;
+@property (nonatomic, strong) NSDictionary *repoDetails;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 @end
